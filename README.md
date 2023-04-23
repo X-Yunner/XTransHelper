@@ -10,3 +10,9 @@
 3.腾讯翻译
 
 推荐使用腾讯翻译，因为免费额度最高。
+
+软件界面
+
+![image](https://user-images.githubusercontent.com/56261818/233843686-a2292455-73ca-4425-9f77-bc89f043f40c.png)
+
+![image](https://user-images.githubusercontent.com/56261818/233843759-d6d1e58c-5065-4c41-826f-0b108b0db2fd.png)
