@@ -1,0 +1,146 @@
+﻿<UserControl x:Class="XTranslation.View.Index"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewc="clr-namespace:XTranslation.View.Controls"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Name="IndexUserControl">
+
+    <UserControl.Resources>
+        <GeometryGroup x:Key="ArrowIcon">
+            <PathGeometry>
+                M841.076364 546.909091H162.909091a34.909091 34.909091 0 0 1 0-69.818182h678.167273a34.909091 34.909091 0 0 1 0 69.818182z M861.090909 546.909091a34.443636 34.443636 0 0 1-24.901818-10.472727l-182.458182-186.181819A34.909091 34.909091 0 0 1 703.534545 302.545455l182.458182 186.181818a34.909091 34.909091 0 0 1 0 49.338182 34.443636 34.443636 0 0 1-24.901818 8.843636z M678.632727 733.090909a34.909091 34.909091 0 0 1-24.901818-58.181818l182.458182-186.181818a34.909091 34.909091 0 1 1 49.803636 48.872727l-182.458182 186.181818a34.443636 34.443636 0 0 1-24.901818 9.309091z
+            </PathGeometry>
+        </GeometryGroup>
+    </UserControl.Resources>
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
+
+            <WrapPanel Margin="0,20,0,0"
+                       HorizontalAlignment="Center">
+                <ComboBox Name="TranslationFromComboBox"
+                          ItemsSource="{Binding Translation_From}"
+                          SelectionChanged="TranslationFromComboBox_OnSelectionChanged"
+                          SelectedIndex="0"
+                          Width="150" />
+                <Path Data="{StaticResource ArrowIcon}"
+                      Margin="20,0,0,0"
+                      Width="20"
+                      Fill="Black"
+                      Stroke="Black"
+                      Stretch="Uniform" />
+                <ComboBox Name="TranslationToComboBox"
+                          Margin="20,0,0,0"
+                          SelectionChanged="TranslationToComboBox_OnSelectionChanged"
+                          Width="150"
+                          ItemsSource="{Binding Translation_To}"
+                          SelectedIndex="0" />
+            </WrapPanel>
+
+            <WrapPanel Margin="0,20,0,0"
+                       HorizontalAlignment="Center">
+
+                <ToggleButton Name="TranslationBtn"
+                              Content="翻译界面"
+                              FontFamily="{StaticResource DingFontFamily}"
+                              FontSize="15"
+                              Width="100"
+                              Style="{StaticResource ToggleButtonSwitch}"
+                              Margin="0,0,0,0"
+                              Checked="TranslationBtn_OnChecked  "
+                              Unchecked="TranslationBtn_OnUnchecked">
+                    <ToggleButton.ToolTip>
+                        <ToolTip Style="{DynamicResource MyToolTipStyle}" Content="快捷键: Alt+Q" />
+                    </ToggleButton.ToolTip>
+                </ToggleButton>
+
+                <ToggleButton Name="TopTransWndBtn"
+                              Content="置顶窗口"
+                              FontFamily="{StaticResource DingFontFamily}"
+                              FontSize="15"
+                              Width="100"
+                              Style="{StaticResource ToggleButtonSwitch}"
+                              Margin="40,0,0,0"
+                              Checked="TopTransWndBtn_OnChecked"
+                              Unchecked="TopTransWndBtn_OnUnchecked">
+                    <ToggleButton.ToolTip>
+                        <ToolTip Style="{DynamicResource MyToolTipStyle}" Content="快捷键: Alt+W" />
+                    </ToggleButton.ToolTip>
+                </ToggleButton>
+
+                <ToggleButton Name="WndPenetrateBtn" Content="鼠标穿透"
+                              FontFamily="{StaticResource DingFontFamily}"
+                              FontSize="15"
+                              Margin="40,0,0,0"
+                              Width="100"
+                              Style="{StaticResource ToggleButtonSwitch}"
+                              Checked="WndPenetrateBtn_OnChecked"
+                              Unchecked="WndPenetrateBtn_OnUnchecked">
+                    <ToggleButton.ToolTip>
+                        <ToolTip Style="{DynamicResource MyToolTipStyle}" Content="快捷键: Alt+E" />
+                    </ToggleButton.ToolTip>
+                </ToggleButton>
+
+            </WrapPanel>
+
+            <WrapPanel Margin="0,15,0,0"
+                       HorizontalAlignment="Center">
+
+                <WrapPanel VerticalAlignment="Center">
+                    <TextBlock Text="背景颜色" FontFamily="{StaticResource DingFontFamily}" FontSize="15" />
+                    <viewc:ColorBorder x:Name="bgColorSelecter"
+                                       Margin="10,0,0,0"
+                                       SelectBrush="#88000000"
+                                       OnSelectedColorChanged="BgColorSelecter_OnOnSelectedColorChanged"
+                                       OnConfirmed="BgColorSelecter_OnOnConfirmed" />
+                </WrapPanel>
+
+                <WrapPanel Margin="30,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="字体颜色" FontFamily="{StaticResource DingFontFamily}" FontSize="15" />
+                    <viewc:ColorBorder x:Name="fontColorSelecter"
+                                       Margin="10,0,0,0"
+                                       SelectBrush="#FFFFFF"
+                                       OnSelectedColorChanged="FontColorSelecter_OnOnSelectedColorChanged"
+                                       OnConfirmed="FontColorSelecter_OnOnConfirmed" />
+                </WrapPanel>
+                <WrapPanel Margin="30,0,0,0">
+                    <TextBlock Text="字体大小" FontFamily="{StaticResource DingFontFamily}" FontSize="15"
+                               VerticalAlignment="Center" />
+                    <ComboBox Name="fontsizeSelecter"
+                              Margin="10,0,0,0"
+                              SelectedIndex="16"
+                              ItemsSource="{Binding fontsizes}"
+                              VerticalAlignment="Center"
+                              SelectionChanged="FontsizeSelecter_OnSelectionChanged"
+                              Width="70" />
+
+                </WrapPanel>
+            </WrapPanel>
+
+            <StackPanel Name="AuthenticationStackPanel"
+                        Margin="0,20,0,0">
+                <ComboBox Name="TranslationPlatformComboBox"
+                          SelectedIndex="0"
+                          ItemsSource="{Binding Translation_Platform}"
+                          SelectionChanged="TranslationPlatformComboBox_OnSelectionChanged" />
+                <hc:PasswordBox Name="IdPasswordBox"
+                                Margin="0,10,0,0"
+                                ShowEyeButton="True"
+                                hc:InfoElement.Placeholder="APP ID"
+                                KeyUp="IdPasswordBox_OnKeyUp" />
+                <hc:PasswordBox Name="KeyPasswordBox"
+                                Margin="0,10,0,0"
+                                ShowEyeButton="True"
+                                hc:InfoElement.Placeholder="密钥"
+                                KeyUp="KeyPasswordBox_OnKeyUp" />
+
+            </StackPanel>
+            <!-- <Button Name="testa" Click="Test_OnClick"/> -->
+        </StackPanel>
+    </Grid>
+</UserControl>

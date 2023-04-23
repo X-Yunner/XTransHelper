@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings>
+    <Setting Name="TopTransWnd" Type="System.Boolean" Scope="应用程序">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="WndPenetrate" Type="System.Boolean" Scope="应用程序">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="BgColor" Type="System.String" Scope="应用程序">
+      <Value Profile="(Default)">#88000000</Value>
+    </Setting>
+    <Setting Name="FontColor" Type="System.String" Scope="应用程序">
+      <Value Profile="(Default)">#FFFFFF</Value>
+    </Setting>
+    <Setting Name="ReszieBarColor" Type="System.String" Scope="应用程序">
+      <Value Profile="(Default)">#FFFFFF</Value>
+    </Setting>
+    <Setting Name="Translation_From" Type="System.Int32" Scope="应用程序">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Translation_To" Type="System.Int32" Scope="应用程序">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Fontsize" Type="System.Int32" Scope="应用程序">
+      <Value Profile="(Default)">16</Value>
+    </Setting>
+    <Setting Name="TransWndWidth" Type="System.Double" Scope="应用程序">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="TransWndHeight" Type="System.Double" Scope="应用程序">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
+    <Setting Name="TransWndTB_Width" Type="System.Double" Scope="应用程序">
+      <Value Profile="(Default)">247.5</Value>
+    </Setting>
+    <Setting Name="TransWnd_Left" Type="System.Double" Scope="应用程序">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="TransWnd_Top" Type="System.Double" Scope="应用程序">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="ClosePage" Type="System.Boolean" Scope="应用程序">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="CloseType" Type="System.Int32" Scope="应用程序">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Translation_Platform" Type="System.Int32" Scope="应用程序">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="BaiDu_Id" Type="System.String" Scope="应用程序">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="BaiDu_Key" Type="System.String" Scope="应用程序">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="YouDao_Id" Type="System.String" Scope="应用程序">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="YouDao_Key" Type="System.String" Scope="应用程序">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="HuoShan_Id" Type="System.String" Scope="应用程序">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="HuoShan_Key" Type="System.String" Scope="应用程序">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Tencent_Id" Type="System.String" Scope="应用程序">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Tencend_Key" Type="System.String" Scope="应用程序">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CaiYun_Id" Type="System.String" Scope="应用程序">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CaiYun_Key" Type="System.String" Scope="应用程序">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
+

@@ -1,0 +1,158 @@
+﻿<Window x:Class="XTranslation.View.TranslationWnd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Window1"
+        Height="300"
+        Width="500"
+        Name="TranslationWindow"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Topmost="{Binding TopWindow,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        Background="Transparent"
+        ShowInTaskbar="False"
+        MinHeight="135"
+        MinWidth="205"
+        WindowStartupLocation="Manual"
+        LocationChanged="TranslationWnd_OnLocationChanged"
+        StateChanged="TranslationWnd_OnStateChanged"
+        SizeChanged="TranslationWnd_OnSizeChanged"
+        MouseMove="TranslationWnd_OnMouseMove"
+        MouseLeftButtonDown="TranslationWnd_OnMouseLeftButtonDown"
+        MouseLeftButtonUp="TranslationWnd_OnMouseLeftButtonUp">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" GlassFrameThickness="0" ResizeBorderThickness="4,4,4,39" />
+    </WindowChrome.WindowChrome>
+
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="_TColor" Color="Black" Opacity="0.6" />
+        <SolidColorBrush x:Key="_TColor1" Color="Black" Opacity="0.6" />
+        <SolidColorBrush x:Key="_TColor2" Color="Black" Opacity="0.4" />
+
+        <GeometryGroup x:Key="MoveIcon" FillRule="Nonzero">
+            <PathGeometry>
+                M78.1312 490.24h412.1088V78.1312L378.9056 189.4656a21.76 21.76 0 1 1-30.7712-30.7712l148.48-148.48a21.76 21.76 0 0 1 30.7712 0l148.48 148.48a21.76 21.76 0 0 1-30.7712 30.7712L533.76 78.1312v412.1088h412.1088l-111.3344-111.3344a21.76 21.76 0 0 1 30.7712-30.7712l148.48 148.48a21.76 21.76 0 0 1 0 30.7712l-148.48 148.48a21.76 21.76 0 0 1-30.7712-30.7712l111.3344-111.3344h-412.1088v412.1088l111.3344-111.3344a21.76 21.76 0 0 1 30.7712 30.7712l-148.48 148.48a21.76 21.76 0 0 1-30.7712 0l-148.48-148.48a21.76 21.76 0 0 1 30.7712-30.7712L490.24 945.8688v-412.1088H78.1312l111.3344 111.3344a21.76 21.76 0 0 1-30.7712 30.7712l-148.48-148.48a21.76 21.76 0 0 1 0-30.7712l148.48-148.48a21.76 21.76 0 1 1 30.7712 30.7712L78.1312 490.24z
+            </PathGeometry>
+        </GeometryGroup>
+
+    </Window.Resources>
+
+
+    <Grid Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border Name="transBorder"
+                Grid.Row="0"
+                CornerRadius="7"
+                Background="{DynamicResource _TColor}">
+            <Grid Name="transGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" Name="transGridcol1" />
+                    <ColumnDefinition Width="Auto" Name="transGridcol2" />
+                    <ColumnDefinition Width="*" Name="transGridcol3" />
+                </Grid.ColumnDefinitions>
+
+                <TextBox Name="srcTextBox"
+                         Grid.Column="0"
+                         IsReadOnly="True"
+                         VerticalAlignment="Top"
+                         TextWrapping="Wrap"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Foreground="White"
+                         FontSize="{Binding fontsize,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding srcText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+
+                <Border Name="resizebBar"
+                        Grid.Column="1"
+                        Width="5"
+                        Cursor="SizeWE" />
+
+                <TextBox Name="dstTextBox"
+                         IsReadOnly="True"
+                         Grid.Column="2"
+                         VerticalAlignment="Top"
+                         TextWrapping="Wrap"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Foreground="White"
+                         FontSize="{Binding fontsize,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding dstText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Height="30"
+                Background="Transparent"
+                HorizontalAlignment="Stretch" />
+
+        <Border Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Height="30"
+                Width="30"
+                HorizontalAlignment="Stretch">
+
+            <Grid>
+                <Button Name="MoveBtn"
+                        Background="{DynamicResource _TColor1}"
+                        BorderThickness="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        PreviewMouseLeftButtonDown="MoveBtn_OnPreviewMouseLeftButtonDown"
+                        FocusVisualStyle="{x:Null}"
+                        WindowChrome.IsHitTestVisibleInChrome="True">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border x:Name="Bg"
+                                                Background="{TemplateBinding Background}"
+                                                CornerRadius="7"
+                                                MinHeight="{TemplateBinding MinHeight}"
+                                                MinWidth="{TemplateBinding MinWidth}"
+                                                SnapsToDevicePixels="true"
+                                                Margin="{TemplateBinding Margin}">
+                                            <Path Name="icon"
+                                                  Width="20"
+                                                  Stroke="White"
+                                                  Fill="White"
+                                                  Stretch="Uniform"
+                                                  Data="{StaticResource MoveIcon}"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  Margin="0,0,0,0" />
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="Bg" Property="Background"
+                                                        Value="{DynamicResource _TColor2}" />
+                                                <Setter TargetName="icon" Property="Stroke" Value="#ebebeb" />
+                                                <Setter TargetName="icon" Property="Fill" Value="#ebebeb" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+            </Grid>
+        </Border>
+
+    </Grid>
+
+
+</Window>

@@ -1,0 +1,349 @@
+﻿<Window x:Class="XTranslation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:view="clr-namespace:XTranslation.View"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d"
+        Title="X翻译助手"
+        Height="324"
+        Width="576"
+        FocusVisualStyle="{x:Null}"
+        Name="mainWinow"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+
+        Topmost="{Binding TopWindow,Mode=TwoWay}"
+        StateChanged="MainWindow_OnStateChanged">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="{Binding captionHeight,Mode=TwoWay}" GlassFrameThickness="0,1,0,0"
+                      ResizeBorderThickness="4" />
+    </WindowChrome.WindowChrome>
+
+    <Window.Resources>
+
+        <SolidColorBrush x:Key="titleBar_btn_color1" Color="#ebebed" />
+        <SolidColorBrush x:Key="titleBar_btn_color2" Color="#317df7" />
+        <SolidColorBrush x:Key="titleBar_btn_color3" Color="#ff545d" />
+
+        <GeometryGroup x:Key="Logo" FillRule="Nonzero">
+            <PathGeometry>
+                M36.500,1.500 C65.830,30.830 95.170,60.170 124.500,89.500 C153.830,60.170 183.170,30.830 212.500,1.500 C224.499,13.165 236.501,24.834 248.500,36.500 C178.174,107.160 107.826,177.840 37.500,248.500 C25.501,236.835 13.499,225.165 1.500,213.500 C30.830,184.170 60.170,154.830 89.500,125.500 C60.170,96.170 30.830,66.830 1.500,37.500 C13.165,25.501 24.834,13.499 36.500,1.500 ZM204.500,168.500 C219.499,183.165 234.501,197.835 249.500,212.500 C237.835,224.499 226.165,236.501 214.500,248.500 C199.501,233.835 184.499,219.165 169.500,204.500 C181.165,192.501 192.835,180.499 204.500,168.500 Z
+            </PathGeometry>
+        </GeometryGroup>
+        <GeometryGroup x:Key="InfoIcon" FillRule="Nonzero">
+            <PathGeometry>
+                M512 958.016611c-245.919634 0-446.016611-200.064292-446.016611-446.016611 0-245.919634 200.095256-446.016611 446.016611-446.016611 245.952318 0 446.016611 200.064292 446.016611 446.016611S757.952318 958.016611 512 958.016611zM512 129.983389c-210.655557 0-382.016611 171.359333-382.016611 382.016611 0 210.624593 171.359333 382.016611 382.016611 382.016611 210.624593 0 382.016611-171.359333 382.016611-382.016611S722.624593 129.983389 512 129.983389z
+                M463.99957 304.00043c0 26.509985 21.490445 48.00043 48.00043 48.00043s48.00043-21.490445 48.00043-48.00043-21.490445-48.00043-48.00043-48.00043S463.99957 277.490445 463.99957 304.00043z
+                M512 768c-17.664722 0-32.00086-14.303454-32.00086-32.00086L479.99914 448c0-17.664722 14.336138-32.00086 32.00086-32.00086s32.00086 14.336138 32.00086 32.00086l0 287.99914C544.00086 753.696546 529.664722 768 512 768z
+            </PathGeometry>
+        </GeometryGroup>
+        <GeometryGroup x:Key="TopIcon" FillRule="Nonzero">
+            <PathGeometry>
+                M474.98752 155.10016L113.80224 501.96992c-19.0208 18.26304-19.0208 47.95904 0 66.22208 19.0208 18.26816 49.94048 18.26816 68.96128 0L460.7488 301.32224v675.84c0 25.856 21.74976 46.83776 48.768 46.83776 26.92096 0 48.77312-20.98176 48.77312-46.83776v-675.84l277.79072 266.86976c19.01568 18.26816 49.94048 18.26816 68.95616 0 19.0208-18.26304 19.0208-47.95904 0-66.22208L543.9488 155.10016c-9.1648-8.8064-21.5552-13.6704-34.432-13.6704-12.96896 0-25.35936 4.864-34.52928 13.6704z m454.16448-61.42976c26.92096 0 48.768-20.98176 48.768-46.83264C977.92 20.98176 956.07296 0 929.152 0H89.728C62.70976 0 40.96 20.98176 40.96 46.83776s21.74976 46.83264 48.768 46.83264h839.424z
+            </PathGeometry>
+        </GeometryGroup>
+        <GeometryGroup x:Key="MiniIcon" FillRule="Nonzero">
+            <PathGeometry>
+                M810.666667 554.666667H213.333333c-25.6 0-42.666667-17.066667-42.666666-42.666667s17.066667-42.666667 42.666666-42.666667h597.333334c25.6 0 42.666667 17.066667 42.666666 42.666667s-17.066667 42.666667-42.666666 42.666667z
+            </PathGeometry>
+        </GeometryGroup>
+        <GeometryGroup x:Key="CloseIcon" FillRule="Nonzero">
+            <PathGeometry>
+                M512.201 448.08L885.643 74.638c42.426-42.426 106.066 21.214 63.64 63.64L575.84 511.719l374.353 374.353c42.426 42.427-21.213 106.066-63.64 63.64L512.201 575.359 137.848 949.712c-42.426 42.426-106.066-21.213-63.64-63.64L448.563 511.72 75.12 138.278c-42.427-42.426 21.213-106.066 63.64-63.64L512.2 448.08z
+            </PathGeometry>
+        </GeometryGroup>
+
+        <Style x:Key="MyToolTipStyle" TargetType="ToolTip">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <Path HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  Data="M 6 0 L 0 6 L 12 6 Z"
+                                  Fill="#E6333333"
+                                  Margin="0,0,0,-1" />
+                            <Border CornerRadius="2"
+                                    Background="#E6333333"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch">
+                                <TextBlock Text="{TemplateBinding ContentControl.Content}"
+                                           Foreground="White"
+                                           LineHeight="20"
+                                           Margin="5"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+                            </Border>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Name="mainGrid"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <hc:NotifyIcon Text="X翻译助手 X_Yunner开发"
+                       Icon="Resources/favicon.ico"
+                       MouseDoubleClick="NotifyIcon_OnMouseDoubleClick">
+            <hc:NotifyIcon.ContextMenu>
+                <ContextMenu Width="150">
+                    <MenuItem Height="35" Header="打开面板" VerticalContentAlignment="Center" Name="Open_Notify"
+                              Click="Open_Notify_OnClick" />
+                    <MenuItem Height="35" Header="退出程序" VerticalContentAlignment="Center" Name="Exit_Notify"
+                              Click="Exit_Notify_OnClick" />
+                </ContextMenu>
+            </hc:NotifyIcon.ContextMenu>
+        </hc:NotifyIcon>
+
+        <Border Name="title_bar"
+                Grid.Row="0"
+                Height="30"
+                BorderThickness="0,0,0,0"
+                Background="White"
+                BorderBrush="#e5e6eb">
+            <!-- Background="#f5f5f5 -->
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <WrapPanel HorizontalAlignment="Left"
+                               VerticalAlignment="Center">
+                        <Path Data="{StaticResource Logo}"
+                              Width="15"
+                              Margin="10,0,0,0"
+                              Fill="Black"
+                              Stroke="Black"
+                              Stretch="Uniform"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center" />
+                        <TextBlock Text="翻译助手"
+                                   Margin="5,0,0,0"
+                                   FontSize="15"
+                                   FontFamily="{StaticResource AiliFontFamily}"
+                                   TextAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </WrapPanel>
+                </Grid>
+
+                <WrapPanel Name="title_bar_btn"
+                           Grid.Column="2"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Top">
+
+                    <ToggleButton Name="TopBtn"
+                                  Width="40"
+                                  Height="{Binding Height,ElementName=title_bar}"
+                                  Background="Transparent"
+                                  IsChecked="{Binding TopWindow,Mode=TwoWay}"
+                                  BorderThickness="0"
+                                  FocusVisualStyle="{x:Null}"
+                                  WindowChrome.IsHitTestVisibleInChrome="True">
+                        <ToggleButton.ToolTip>
+                            <ToolTip Style="{DynamicResource MyToolTipStyle}" Content="置顶" />
+                        </ToggleButton.ToolTip>
+                        <ToggleButton.Style>
+                            <Style TargetType="{x:Type ToggleButton}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                            <Border x:Name="Bg"
+                                                    Background="{TemplateBinding Background}"
+                                                    CornerRadius="0"
+                                                    MinHeight="{TemplateBinding MinHeight}"
+                                                    MinWidth="{TemplateBinding MinWidth}"
+                                                    SnapsToDevicePixels="true"
+                                                    Margin="{TemplateBinding Margin}">
+                                                <Path Name="icon"
+                                                      Width="14"
+                                                      Stroke="Black"
+                                                      Fill="black"
+                                                      Stretch="Uniform"
+                                                      Data="{StaticResource TopIcon}"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
+                                                      Margin="0,0,0,0" />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Bg" Property="Background"
+                                                            Value="{StaticResource titleBar_btn_color1}" />
+                                                    <Setter TargetName="icon" Property="Stroke"
+                                                            Value="{StaticResource titleBar_btn_color2}" />
+                                                    <Setter TargetName="icon" Property="Fill"
+                                                            Value="{StaticResource titleBar_btn_color2}" />
+                                                </Trigger>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter TargetName="icon" Property="Stroke"
+                                                            Value="{StaticResource titleBar_btn_color2}" />
+                                                    <Setter TargetName="icon" Property="Fill"
+                                                            Value="{StaticResource titleBar_btn_color2}" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ToggleButton.Style>
+                    </ToggleButton>
+
+                    <Button Name="MiniBtn"
+                            Width="40"
+                            Height="{Binding Height,ElementName=title_bar}"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Click="MiniBtn_OnClick"
+                            FocusVisualStyle="{x:Null}"
+                            WindowChrome.IsHitTestVisibleInChrome="True">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border x:Name="Bg"
+                                                    Background="{TemplateBinding Background}"
+                                                    CornerRadius="0"
+                                                    MinHeight="{TemplateBinding MinHeight}"
+                                                    MinWidth="{TemplateBinding MinWidth}"
+                                                    SnapsToDevicePixels="true"
+                                                    Margin="{TemplateBinding Margin}">
+                                                <Path Name="icon"
+                                                      Width="14"
+                                                      Stroke="Black"
+                                                      Fill="black"
+                                                      Stretch="Uniform"
+                                                      Data="{StaticResource MiniIcon}"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
+                                                      Margin="0,0,0,0" />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Bg" Property="Background"
+                                                            Value="{StaticResource titleBar_btn_color1}" />
+                                                    <Setter TargetName="icon" Property="Stroke"
+                                                            Value="{StaticResource titleBar_btn_color2}" />
+                                                    <Setter TargetName="icon" Property="Fill"
+                                                            Value="{StaticResource titleBar_btn_color2}" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <Button Name="CloseBtn"
+                            Width="40"
+                            Height="{Binding Height,ElementName=title_bar}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            Click="CloseBtn_OnClick"
+                            FocusVisualStyle="{x:Null}"
+                            WindowChrome.IsHitTestVisibleInChrome="True">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border x:Name="Bg"
+                                                    Background="{TemplateBinding Background}"
+                                                    CornerRadius="0,0,0,0"
+                                                    MinHeight="{TemplateBinding MinHeight}"
+                                                    MinWidth="{TemplateBinding MinWidth}"
+                                                    SnapsToDevicePixels="true"
+                                                    Margin="{TemplateBinding Margin}">
+                                                <Path Name="icon"
+                                                      Width="12"
+                                                      Stroke="Black"
+                                                      Fill="black"
+                                                      Stretch="Uniform"
+                                                      Data="{StaticResource CloseIcon}"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
+                                                      Margin="0,0,0,0" />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Bg" Property="Background"
+                                                            Value="{StaticResource titleBar_btn_color3}" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                </WrapPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <view:Index />
+            <Border Name="InfoBtn"
+                    Background="Transparent"
+                    Width="20"
+                    Height="20"
+                    MouseLeftButtonDown="InfoBtn_OnMouseLeftButtonDown"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,10,5">
+                <Path Name="HintIcon"
+                      Stroke="#919191"
+                      Fill="#919191"
+                      Stretch="Uniform"
+                      Data="{StaticResource InfoIcon}"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center" />
+                <Border.ToolTip>
+                    <ToolTip Style="{DynamicResource MyToolTipStyle}" Content="关于" />
+                </Border.ToolTip>
+                <Border.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetName="HintIcon"
+                                                Storyboard.TargetProperty="(Fill).(SolidColorBrush.Color)" To="#575757"
+                                                Duration="0:0:0.3" />
+                                <ColorAnimation Storyboard.TargetName="HintIcon"
+                                                Storyboard.TargetProperty="(Stroke).(SolidColorBrush.Color)"
+                                                To="#575757" Duration="0:0:0.3" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetName="HintIcon"
+                                                Storyboard.TargetProperty="(Fill).(SolidColorBrush.Color)" To="#919191"
+                                                Duration="0:0:0.3" />
+                                <ColorAnimation Storyboard.TargetName="HintIcon"
+                                                Storyboard.TargetProperty="(Stroke).(SolidColorBrush.Color)"
+                                                To="#919191" Duration="0:0:0.3" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Border.Triggers>
+            </Border>
+        </Grid>
+
+
+    </Grid>
+</Window>
