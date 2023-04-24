@@ -29,10 +29,7 @@ namespace XTranslation.Utils
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
-
-
-
-
+        
         #region 鼠标穿透
         
         ///win32 api
@@ -51,6 +48,8 @@ namespace XTranslation.Utils
         
         #endregion
 
+        #region 监听复制消息
+
         //设置窗口是否监听复制消息
         public static bool SetClipboardFormatListener(IntPtr hwnd, bool flag)
         {
@@ -59,12 +58,14 @@ namespace XTranslation.Utils
             return RemoveClipboardFormatListener(hwnd);
         }
         
+        #endregion
+
+        #region 注册全局快捷键
+        
         //热键消息
         const int WM_HOTKEY = 0x312;
-
         //窗口消息处理函数是否已添加
         private static bool WndProcIsAdd = false;
-        
         //热键映射表 可以使用此实例查看已注册的快捷键
         public static Dictionary<int, Action<int>> HotKey_Map = new Dictionary<int, Action<int>>();
         
@@ -82,7 +83,6 @@ namespace XTranslation.Utils
             }
             return true;
         }
-        
         public static void UnregisterHotKey(IntPtr hwnd, ModifierKeys modifierKeys,Key key)
         {
             HotKey_Map.Remove((int)modifierKeys+(int)key);
@@ -93,7 +93,6 @@ namespace XTranslation.Utils
                 HwndSource.FromHwnd(hwnd).RemoveHook(WndProc);
             }
         }
-
         static IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             switch (msg)
@@ -109,8 +108,9 @@ namespace XTranslation.Utils
                     break;
                 }
             }
-
             return IntPtr.Zero;
         }
+        
+        #endregion
     }
 }

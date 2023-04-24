@@ -22,6 +22,8 @@ namespace XTranslation.Utils
                 {
                     if (platformEnum == TranslationPlatformEnum.HuoShan)
                         return "zh-Hant";
+                    if (platformEnum == TranslationPlatformEnum.Tencent)
+                        return "zh-TW";
                     return "cht";
                 }
                 case "英语":
@@ -32,11 +34,15 @@ namespace XTranslation.Utils
                 {
                     if (platformEnum == TranslationPlatformEnum.HuoShan)
                         return "ja";
+                    if (platformEnum == TranslationPlatformEnum.Tencent)
+                        return "ja";
                     return "jp";
                 }
                 case "韩语":
                 {
                     if (platformEnum == TranslationPlatformEnum.HuoShan)
+                        return "ko";
+                    if (platformEnum == TranslationPlatformEnum.Tencent)
                         return "ko";
                     return "kor";
                 }
@@ -44,11 +50,15 @@ namespace XTranslation.Utils
                 {
                     if (platformEnum == TranslationPlatformEnum.HuoShan)
                         return "fr";
+                    if (platformEnum == TranslationPlatformEnum.Tencent)
+                        return "fr";
                     return "fra";
                 }
                 case "西班牙语":
                 {
                     if (platformEnum == TranslationPlatformEnum.HuoShan)
+                        return "es";
+                    if (platformEnum == TranslationPlatformEnum.Tencent)
                         return "es";
                     return "spa";
                 }
@@ -59,6 +69,8 @@ namespace XTranslation.Utils
                 case "阿拉伯语":
                 {
                     if (platformEnum == TranslationPlatformEnum.HuoShan)
+                        return "ar";
+                    if (platformEnum == TranslationPlatformEnum.Tencent)
                         return "ar";
                     return "ara";
                 }
@@ -144,6 +156,8 @@ namespace XTranslation.Utils
                 {
                     if (platformEnum == TranslationPlatformEnum.HuoShan)
                         return "vi";
+                    if (platformEnum == TranslationPlatformEnum.Tencent)
+                        return "vi";
                     return "vie";
                 }
                 case "印尼语":
@@ -165,6 +179,8 @@ namespace XTranslation.Utils
                 case "马来语":
                 {
                     if (platformEnum == TranslationPlatformEnum.HuoShan)
+                        return "ms";
+                    if (platformEnum == TranslationPlatformEnum.Tencent)
                         return "ms";
                     return "may";
                 }
